@@ -2,7 +2,7 @@ package entity;
 
 public record PixelData(
         int width,
-        int heigth,
+        int height,
         int rowSize,
         int totalSize,
         int bitsPerPixel

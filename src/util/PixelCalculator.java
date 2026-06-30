@@ -1,24 +1,25 @@
 package util;
 
 import entity.Header;
+import entity.InformationHeader;
 import entity.PixelData;
 
 public class PixelCalculator {
     private final int width;
     private final int bitsPerPixel;
-    private final int heigth;
-    private int rowSize;
-    private int totalSize;
+    private final int height;
+    private int rowSizeInBytes;
+    private int totalSizeInBytes;
 
-    public PixelCalculator(int width, int bitsPerPixel, int heigth) throws IllegalArgumentException {
+    public PixelCalculator(int width, int bitsPerPixel, int height) throws IllegalArgumentException {
         this.width = width;
         this.bitsPerPixel = bitsPerPixel;
-        this.heigth = heigth;
+        this.height = height;
         validation();
     }
 
-    public void validation(){
-        if(width <= 0 | heigth <= 0 | bitsPerPixel != Header.headerSizeBytes){
+    private void validation(){
+        if(width <= 0 | height <= 0 | bitsPerPixel != Header.headerSizeBytes){
             throw new IllegalArgumentException();
         }
     }
@@ -26,14 +27,14 @@ public class PixelCalculator {
     public PixelData calculator(){
         rowCalculator();
         totalCalculator();
-        return new PixelData(width, heigth, rowSize, totalSize, bitsPerPixel);
+        return new PixelData(width, height, rowSizeInBytes, totalSizeInBytes, bitsPerPixel);
     }
 
     private void rowCalculator(){
-        rowSize = ((bitsPerPixel * width) / 32) * 4;
+        rowSizeInBytes = ((bitsPerPixel * width) / 32) * 4;
     }
 
     private void totalCalculator(){
-        totalSize = rowSize * heigth;
+        totalSizeInBytes = (rowSizeInBytes * height) + Header.headerSizeBytes + InformationHeader.INFORMATIONHEADER;
     }
 }

@@ -1,19 +1,23 @@
 package entity;
 
-import util.PixelCalculator;
-
 public class Header {
     public static final int headerSizeBytes = 0x0E;
-    private final byte[] TYPE = {0x42, 0x4D};
-    private final int RESERVED = 0x00;
-    private final int fileSizeInBytes;
-    private final int OFFSET = 0x36;
-    private final PixelCalculator pixelCalculator;
+    public static final byte[] TYPE = {0x42, 0x4D};
+    public static final int RESERVED = 0x00;
+    public static final int OFFSET = 0x36;
+    private final PixelData pixelData;
 
-    public Header(int fileSizeInBytes, PixelCalculator pixelCalculator) {
-        this.fileSizeInBytes = fileSizeInBytes;
-        this.pixelCalculator = pixelCalculator;
+
+    public Header(PixelData pixelData) throws IllegalArgumentException{
+        this.pixelData = pixelData;
+        validation();
     }
 
+    public void validation(){
+        if(pixelData == null) throw new IllegalArgumentException();
+    }
 
+    public PixelData getPixelData() {
+        return pixelData;
+    }
 }

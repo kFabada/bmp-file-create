@@ -1,7 +1,9 @@
+import entity.*;
+import util.PixelCalculator;
+
 import java.io.*;
 
 public class Main {
-
     private static final int HEADERSIZE = 0xE;
     private static final int INFORMATIONHEADER = 0x28;
     private static final byte[] DEFAULTYPE = {0x42, 0x4D};
@@ -47,5 +49,14 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
+        PixelCalculator pixelCalculator = new PixelCalculator(1920, 24, 1080);
+        PixelData pixelData = pixelCalculator.calculator();
+
+        Header header = new Header(pixelData);
+        InformationHeader informationHeader = new InformationHeader();
+
+        FileHandle fileHandle = FileHandle.getInstance("", "image");
+
+        HeaderWriter headerWriter = new HeaderWriter(header, informationHeader,0, fileHandle);
     }
 }
