@@ -1,6 +1,7 @@
 import java.io.*;
 
 public class Main {
+
     private static final int HEADERSIZE = 0xE;
     private static final int INFORMATIONHEADER = 0x28;
     private static final byte[] DEFAULTYPE = {0x42, 0x4D};
@@ -46,37 +47,5 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        File file = new File("image3.bmp");
-
-        if(file.exists()) file.delete();
-        if(!file.exists()) file.createNewFile();
-
-        DataOutputStream out = new DataOutputStream(new FileOutputStream(file));
-        header(out);
-        informationHeader(out);
-
-        out.writeByte(0);
-        out.writeByte(255);
-        out.writeByte(0x00);
-
-        out.writeByte(5);
-        out.writeByte(0x00);
-        out.writeByte(0x00);
-
-        out.writeInt(0x00);
-
-        out.writeByte(255);
-        out.writeByte(0xFF);
-        out.writeByte(0x00);
-
-        out.writeByte(210);
-        out.writeByte(0x00);
-        out.writeByte(0x00);
-
-        out.writeInt(0x00);
-
-
-        out.flush();
-        out.close();
     }
 }
