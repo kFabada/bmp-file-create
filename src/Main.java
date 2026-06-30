@@ -1,3 +1,6 @@
+import entity.*;
+import util.PixelCalculator;
+
 import java.io.*;
 
 public class Main {
@@ -46,37 +49,14 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        File file = new File("image3.bmp");
+        PixelCalculator pixelCalculator = new PixelCalculator(1920, 24, 1080);
+        PixelData pixelData = pixelCalculator.calculator();
 
-        if(file.exists()) file.delete();
-        if(!file.exists()) file.createNewFile();
+        Header header = new Header(pixelData);
+        InformationHeader informationHeader = new InformationHeader();
 
-        DataOutputStream out = new DataOutputStream(new FileOutputStream(file));
-        header(out);
-        informationHeader(out);
+        FileHandle fileHandle = FileHandle.getInstance("", "image");
 
-        out.writeByte(0);
-        out.writeByte(255);
-        out.writeByte(0x00);
-
-        out.writeByte(5);
-        out.writeByte(0x00);
-        out.writeByte(0x00);
-
-        out.writeInt(0x00);
-
-        out.writeByte(255);
-        out.writeByte(0xFF);
-        out.writeByte(0x00);
-
-        out.writeByte(210);
-        out.writeByte(0x00);
-        out.writeByte(0x00);
-
-        out.writeInt(0x00);
-
-
-        out.flush();
-        out.close();
+        HeaderWriter headerWriter = new HeaderWriter(header, informationHeader,0, fileHandle);
     }
 }
