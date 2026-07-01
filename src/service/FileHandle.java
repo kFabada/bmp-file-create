@@ -1,4 +1,4 @@
-package entity;
+package service;
 
 import java.io.DataOutputStream;
 import java.io.File;
