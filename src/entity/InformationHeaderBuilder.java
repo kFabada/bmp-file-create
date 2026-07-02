@@ -1,6 +1,7 @@
 package entity;
 
 public class InformationHeaderBuilder extends InformationHeaderAbstract{
+    private final int headerByteSize;
     private final short planes;
     private final int compress;
     private final int sizeRaw;
@@ -9,7 +10,8 @@ public class InformationHeaderBuilder extends InformationHeaderAbstract{
     private final int nColor;
     private final int importColor;
 
-    public InformationHeaderBuilder(short planes, int compress, int sizeRaw, int horizontal, int vertical, int nColor, int importColor) {
+    public InformationHeaderBuilder(int headerByteSize, short planes, int compress, int sizeRaw, int horizontal, int vertical, int nColor, int importColor) {
+        this.headerByteSize = headerByteSize;
         this.planes = planes;
         this.compress = compress;
         this.sizeRaw = sizeRaw;
@@ -19,11 +21,52 @@ public class InformationHeaderBuilder extends InformationHeaderAbstract{
         this.importColor = importColor;
     }
 
+    @Override
+    public int getHeaderByteSize() {
+        return headerByteSize;
+    }
+
+    @Override
+    public short getPlanes() {
+        return planes;
+    }
+
+    @Override
+    public int getCompress() {
+        return compress;
+    }
+
+    @Override
+    public int getSizeRaw() {
+        return sizeRaw;
+    }
+
+    @Override
+    public int getHorizontal() {
+        return horizontal;
+    }
+
+    @Override
+    public int getVertical() {
+        return vertical;
+    }
+
+    @Override
+    public int getnColor() {
+        return nColor;
+    }
+
+    @Override
+    public int getImportColor() {
+        return importColor;
+    }
+
     public static Builder builder(){
         return new Builder();
     }
 
     public static class Builder{
+        private int headerByteSize;
         private short planes;
         private int compress;
         private int sizeRaw;
@@ -42,7 +85,11 @@ public class InformationHeaderBuilder extends InformationHeaderAbstract{
             this.importColor = importColor;
         }
 
-        public void setNcolor(int nColor) {
+        public void setHeaderByteSize(int headerByteSize) {
+            this.headerByteSize = headerByteSize;
+        }
+
+        public void setnColor(int nColor) {
             this.nColor = nColor;
         }
 
@@ -63,7 +110,16 @@ public class InformationHeaderBuilder extends InformationHeaderAbstract{
         }
 
         public InformationHeaderBuilder build(){
-            return new InformationHeaderBuilder(planes, compress, sizeRaw, horizontal, vertical, nColor, importColor);
+            return new InformationHeaderBuilder(
+                    headerByteSize,
+                    planes,
+                    compress,
+                    sizeRaw,
+                    horizontal,
+                    vertical,
+                    nColor,
+                    importColor
+            );
         }
     }
 }

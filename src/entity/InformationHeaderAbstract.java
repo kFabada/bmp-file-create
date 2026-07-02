@@ -1,7 +1,7 @@
 package entity;
 
 public abstract class InformationHeaderAbstract {
-    private final int INFORMATIONHEADER = 0x28;
+    private final int headerByteSize = 0x28;
     private final short planes = 0x01;
     private final int compress = 0x00;
     private final int sizeRaw = 0x00;
@@ -10,8 +10,8 @@ public abstract class InformationHeaderAbstract {
     private final int nColor = 0x00;
     private final int importColor = 0x00;
 
-    public int getINFORMATIONHEADER() {
-        return INFORMATIONHEADER;
+    public int getHeaderByteSize() {
+        return headerByteSize;
     }
 
     public int getImportColor() {

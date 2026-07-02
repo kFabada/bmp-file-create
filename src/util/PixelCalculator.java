@@ -1,7 +1,7 @@
 package util;
 
 import entity.Header;
-import entity.InformationHeader;
+import entity.InformationHeaderAbstract;
 import entity.PixelData;
 
 public class PixelCalculator {
@@ -10,15 +10,17 @@ public class PixelCalculator {
     private final int height;
     private int rowSizeInBytes;
     private int totalSizeInBytes;
+    private final InformationHeaderAbstract informationHeader;
 
-    public PixelCalculator(int width, int bitsPerPixel, int height) throws IllegalArgumentException {
+    public PixelCalculator(int width, int bitsPerPixel, int height, InformationHeaderAbstract informationHeader) throws IllegalArgumentException {
         this.width = width;
         this.bitsPerPixel = bitsPerPixel;
         this.height = height;
+        this.informationHeader = informationHeader;
         validation();
     }
 
-    private void validation(){
+    private void validation() throws IllegalArgumentException {
         if(width <= 0 | height <= 0 | bitsPerPixel != Header.headerSizeBytes){
             throw new IllegalArgumentException();
         }
@@ -35,6 +37,6 @@ public class PixelCalculator {
     }
 
     private void totalCalculator(){
-        totalSizeInBytes = (rowSizeInBytes * height) + Header.headerSizeBytes + InformationHeader.INFORMATIONHEADER;
+        totalSizeInBytes = (rowSizeInBytes * height) + Header.headerSizeBytes + informationHeader.getHeaderByteSize();
     }
 }
