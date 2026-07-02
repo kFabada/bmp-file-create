@@ -1,4 +1,7 @@
-package entity;
+package service;
+
+import entity.Header;
+import entity.InformationHeader;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -16,7 +19,7 @@ public class HeaderWriter {
         this.handle = handle;
     }
 
-    public void build(){
+    public void write(){
         DataOutputStream out = handle.getOut();
 
         try {
@@ -41,7 +44,7 @@ public class HeaderWriter {
 
             out.flush();
         } catch (IOException e) {
-            System.out.printf("filed write bmp %s", e.getMessage());
+            System.out.printf("filed write bmp {%s}", e.getMessage());
         }
     }
 }
