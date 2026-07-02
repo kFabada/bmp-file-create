@@ -10,7 +10,7 @@ import java.util.Iterator;
 public class BodyWriter {
     private final FileHandle handle;
     private final BodyData bodyData;
-    private final short ALIGNMENT_PADDING = 0x00;
+    private final byte ALIGNMENT_PADDING = 0x00;
 
     public BodyWriter(FileHandle handle, BodyData bodyData) throws IllegalArgumentException{
         this.handle = handle;
@@ -25,6 +25,7 @@ public class BodyWriter {
             while (dataIterator.hasNext()){
                 RGBColor color = dataIterator.next();
                 out.write(color.toByteArray());
+                out.write(ALIGNMENT_PADDING);
             }
 
             out.flush();

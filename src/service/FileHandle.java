@@ -12,7 +12,7 @@ public class FileHandle {
     private final String SLASH = "/";
     private final String FILETYPE = ".bmp";
     private File file;
-    private DataOutputStream out;
+    private DataOutputStream output;
 
     public FileHandle(String path, String fileName) throws IllegalArgumentException, IOException {
         this.path = path;
@@ -46,8 +46,8 @@ public class FileHandle {
 
     }
 
-    public DataOutputStream getOut() {
-        return out;
+    public DataOutputStream getOutput() {
+        return output;
     }
 
     private void initialization() throws IOException {
@@ -57,7 +57,7 @@ public class FileHandle {
         try {
           file.createNewFile();
 
-          out = new DataOutputStream(new FileOutputStream(file));
+          output = new DataOutputStream(new FileOutputStream(file));
         } catch (IOException e) {
             throw new IOException();
         }
