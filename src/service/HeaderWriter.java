@@ -2,17 +2,18 @@ package service;
 
 import entity.Header;
 import entity.InformationHeader;
+import entity.InformationHeaderAbstract;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
 
 public class HeaderWriter {
     private final Header header;
-    private final InformationHeader informationHeader;
+    private final InformationHeaderAbstract informationHeader;
     private final int dataSize;
     private final FileHandle handle;
 
-    public HeaderWriter(Header header, InformationHeader informationHeader, int dataSize, FileHandle handle) {
+    public HeaderWriter(Header header, InformationHeaderAbstract informationHeader, int dataSize, FileHandle handle) {
         this.header = header;
         this.informationHeader = informationHeader;
         this.dataSize = dataSize;
