@@ -8,17 +8,14 @@ import java.io.IOException;
 import java.util.Iterator;
 
 public class BodyWriter {
-    private final FileHandle handle;
     private final BodyData bodyData;
     private final byte ALIGNMENT_PADDING = 0x00;
 
-    public BodyWriter(FileHandle handle, BodyData bodyData) throws IllegalArgumentException{
-        this.handle = handle;
+    public BodyWriter(BodyData bodyData) throws IllegalArgumentException{
         this.bodyData = bodyData;
     }
 
-    public void write(){
-        DataOutputStream out = handle.getOut();
+    public void writeTo(DataOutputStream out){
         Iterator<RGBColor> dataIterator = bodyData.iterator();
 
         try {

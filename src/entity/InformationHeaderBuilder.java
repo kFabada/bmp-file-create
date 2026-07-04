@@ -77,36 +77,44 @@ public class InformationHeaderBuilder extends InformationHeaderAbstract{
 
         public Builder() {}
 
-        public void setPlanes(short planes) {
+        public Builder setPlanes(short planes) {
             this.planes = planes;
+            return this;
         }
 
-        public void setImportColor(int importColor) {
+        public Builder setImportColor(int importColor) {
             this.importColor = importColor;
+            return this;
         }
 
-        public void setHeaderByteSize(int headerByteSize) {
+        public Builder setHeaderByteSize(int headerByteSize) {
             this.headerByteSize = headerByteSize;
+            return this;
         }
 
-        public void setnColor(int nColor) {
+        public Builder setnColor(int nColor) {
             this.nColor = nColor;
+            return this;
         }
 
-        public void setVertical(int vertical) {
+        public Builder setVertical(int vertical) {
             this.vertical = vertical;
+            return this;
         }
 
-        public void setHorizontal(int horizontal) {
+        public Builder setHorizontal(int horizontal) {
             this.horizontal = horizontal;
+            return this;
         }
 
-        public void setSizeRaw(int sizeRaw) {
+        public Builder setSizeRaw(int sizeRaw) {
             this.sizeRaw = sizeRaw;
+            return this;
         }
 
-        public void setCompress(int compress) {
+        public Builder setCompress(int compress) {
             this.compress = compress;
+            return this;
         }
 
         public InformationHeaderBuilder build(){
